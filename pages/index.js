@@ -1,65 +1,76 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import Head from 'next/head';
+import Layout from '../components/Layout';
+import { Jumbotron, Button, Carousel } from 'react-bootstrap';
 
 export default function Home() {
   return (
-    <div className={styles.container}>
+    <Layout>
       <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>Torvan</title>
+        <link rel='icon' href='/favicon.ico' />
+        <link
+          href='https://fonts.googleapis.com/icon?family=Material+Icons'
+          rel='stylesheet'></link>
       </Head>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
+      <Jumbotron>
+        <h1 className='display-4 text-center'>Torvan Trädgårdshandel</h1>
+        <p className='lead'>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Suscipit,
+          odit amet officiis vitae possimus ad voluptas est? Voluptates
+          deserunt, eveniet, blanditiis odit tempore perferendis totam minus
+          repudiandae tempora saepe fugiat.
         </p>
+        <hr className='my-4' />
+        <Carousel>
+          <Carousel.Item>
+            <img
+              className='d-block w-100'
+              src='/carouseltemp/carouseltemp1.jpg'
+              alt='First slide'
+            />
+            <Carousel.Caption>
+              <h3>First slide label</h3>
+              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+            </Carousel.Caption>
+          </Carousel.Item>
+          <Carousel.Item>
+            <img
+              className='d-block w-100'
+              src='/carouseltemp/carouseltemp2.jpg'
+              alt='Second slide'
+            />
 
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
+            <Carousel.Caption>
+              <h3>Second slide label</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </Carousel.Caption>
+          </Carousel.Item>
+          <Carousel.Item>
+            <img
+              className='d-block w-100'
+              src='/carouseltemp/carouseltemp3.jpg'
+              alt='Third slide'
+            />
 
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
-    </div>
-  )
+            <Carousel.Caption>
+              <h3>Third slide label</h3>
+              <p>
+                Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+              </p>
+            </Carousel.Caption>
+          </Carousel.Item>
+        </Carousel>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Suscipit,
+          odit amet officiis vitae possimus ad voluptas est? Voluptates
+          deserunt, eveniet, blanditiis odit tempore perferendis totam minus
+          repudiandae tempora saepe fugiat.
+        </p>
+        <p>
+          <Button variant='primary'>Gå till shoppen!</Button>
+        </p>
+      </Jumbotron>
+    </Layout>
+  );
 }
