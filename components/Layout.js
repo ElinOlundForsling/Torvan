@@ -45,20 +45,30 @@ export default function Layout({ children }) {
                 title={(user && user.displayName) || 'Konto'}
                 id='basic-nav-dropdown'
                 className='mr-0'>
-                <NavDropdown.Item href='/profile'>Profile</NavDropdown.Item>
+                <NavDropdown.Item href='/profile'>Profil</NavDropdown.Item>
                 <NavDropdown.Item onClick={signoutHandler}>
-                  Sign out
+                  Logga ut
                 </NavDropdown.Item>
               </NavDropdown>
             </AuthCheck>
-
-            <NavDropdown title='Admin' id='basic-nav-dropdown' className='mr-3'>
-              <NavDropdown.Item href='/admin/users'>Users</NavDropdown.Item>
-              <NavDropdown.Item href='/admin/products'>
-                Products
-              </NavDropdown.Item>
-              <NavDropdown.Item href='/admin/orders'>Orders</NavDropdown.Item>
-            </NavDropdown>
+            <AuthCheck
+              fallback={<p>Not Logged In or Required Claims Not Met</p>}
+              requiredClaims={{ isAdmin: true }}>
+              <NavDropdown
+                title='Admin'
+                id='basic-nav-dropdown'
+                className='mr-3'>
+                <NavDropdown.Item href='/admin/users'>
+                  Användare
+                </NavDropdown.Item>
+                <NavDropdown.Item href='/admin/products'>
+                  Produkter
+                </NavDropdown.Item>
+                <NavDropdown.Item href='/admin/orders'>
+                  Beställningar
+                </NavDropdown.Item>
+              </NavDropdown>
+            </AuthCheck>
           </Nav>
           <Form inline>
             <FormControl type='text' placeholder='Search' className='mr-sm-2' />

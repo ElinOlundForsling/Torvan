@@ -32,3 +32,7 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+#temp
+/pages/_app.js
+torvan-tradgard-firebase-adminsdk-b272u-20bf84e7ab.json

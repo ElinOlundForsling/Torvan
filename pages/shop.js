@@ -11,7 +11,11 @@ export default function Home() {
   const tempProducts = [];
   for (let i = 0; i < 12; i++) {
     if (products) {
-      tempProducts.push(<ProductCard key={i} product={products[0]} />);
+      if (products.length < i) {
+      }
+      tempProducts.push(
+        <ProductCard key={i} product={products[i % products.length]} />,
+      );
     }
   }
   return (
