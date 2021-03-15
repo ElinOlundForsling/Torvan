@@ -5,6 +5,7 @@ import { FirebaseAppProvider } from 'reactfire';
 import 'firebase/firestore';
 import 'firebase/auth';
 import 'firebase/storage';
+import 'firebase/functions';
 
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_KEY,

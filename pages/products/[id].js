@@ -41,6 +41,7 @@ export default function Home({ id }) {
         });
       } else {
         userCollection.doc(user.uid).collection('cart').doc(product.id).set({
+          id: product.id,
           name: product.name,
           imgUrl: product.imgUrl,
           price: product.price,

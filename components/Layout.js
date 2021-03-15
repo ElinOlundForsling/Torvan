@@ -7,16 +7,43 @@ import {
   FormControl,
   Container,
 } from 'react-bootstrap';
-import { AuthCheck, useUser, useAuth } from 'reactfire';
+import {
+  AuthCheck,
+  useUser,
+  useAuth,
+  useFirestore,
+  useFirestoreCollectionData,
+} from 'reactfire';
 
 export default function Layout({ children }) {
-  const { data: user } = useUser();
   const auth = useAuth();
+  const { data: user } = useUser();
+  const userId = user && user.uid ? user.uid : 'null';
+  const query = useFirestore()
+    .collection('users')
+    .doc(userId)
+    .collection('cart');
+  const cart = useFirestoreCollectionData(query, {
+    idField: 'id',
+    initialData: [],
+  }).data;
 
   const signoutHandler = e => {
     e.preventDefault();
     auth.signOut();
   };
+
+  // const functions = useFunctions();
+  // const makeAdmin = functions.httpsCallable('addAdminRole');
+
+  // useEffect(async () => {
+  //   if (user) {
+  //     await makeAdmin({ email: user.email });
+  //     user.getIdTokenResult().then(res => {
+  //       console.log(res.claims);
+  //     });
+  //   }
+  // }, [user]);
 
   return (
     <main>
@@ -32,15 +59,9 @@ export default function Layout({ children }) {
           <Nav>
             <Nav.Link href='/cart'>
               <span className='material-icons md-nav'>shopping_cart</span>
-              Kundvagn
+              Kundvagn {cart.length > 0 && cart.length}
             </Nav.Link>
-            <AuthCheck
-              fallback={
-                <>
-                  <Nav.Link href='/signin'>Logga in</Nav.Link>
-                  <Nav.Link href='/signup'>Registera</Nav.Link>
-                </>
-              }>
+            {user && user.email ? (
               <NavDropdown
                 title={(user && user.displayName) || 'Konto'}
                 id='basic-nav-dropdown'
@@ -50,25 +71,32 @@ export default function Layout({ children }) {
                   Logga ut
                 </NavDropdown.Item>
               </NavDropdown>
-            </AuthCheck>
-            <AuthCheck
-              fallback={<p>Not Logged In or Required Claims Not Met</p>}
-              requiredClaims={{ isAdmin: true }}>
-              <NavDropdown
-                title='Admin'
-                id='basic-nav-dropdown'
-                className='mr-3'>
-                <NavDropdown.Item href='/admin/users'>
-                  Användare
-                </NavDropdown.Item>
-                <NavDropdown.Item href='/admin/products'>
-                  Produkter
-                </NavDropdown.Item>
-                <NavDropdown.Item href='/admin/orders'>
-                  Beställningar
-                </NavDropdown.Item>
-              </NavDropdown>
-            </AuthCheck>
+            ) : (
+              <>
+                <Nav.Link href='/signin'>Logga in</Nav.Link>
+                <Nav.Link href='/signup'>Registera</Nav.Link>
+              </>
+            )}
+            {user && (
+              <AuthCheck
+              // requiredClaims={{ isAdmin: true }}
+              >
+                <NavDropdown
+                  title='Admin'
+                  id='basic-nav-dropdown'
+                  className='mr-3'>
+                  <NavDropdown.Item href='/admin/users'>
+                    Användare
+                  </NavDropdown.Item>
+                  <NavDropdown.Item href='/admin/products'>
+                    Produkter
+                  </NavDropdown.Item>
+                  <NavDropdown.Item href='/admin/orders'>
+                    Beställningar
+                  </NavDropdown.Item>
+                </NavDropdown>
+              </AuthCheck>
+            )}
           </Nav>
           <Form inline>
             <FormControl type='text' placeholder='Search' className='mr-sm-2' />

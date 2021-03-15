@@ -187,6 +187,7 @@ export default function Home({ id }) {
                   type='number'
                   name='price'
                   placeholder='Pris'
+                  step='0.01'
                   ref={register({ required: true })}
                 />
                 {errors.category && (

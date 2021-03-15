@@ -43,89 +43,87 @@ export default function Home() {
           rel='stylesheet'></link>
       </Head>
 
-      <>
-        <Row>
-          <Col sm={12} md={5} xl={5}>
-            <h1>{user && user.displayName}</h1>
-            {message.msg && (
-              <Alert variant={message.variant}>{message.msg}</Alert>
-            )}
-            {user && (
-              <Form onSubmit={handleSubmit(handleUpdate)}>
-                <Form.Group controlId='formName'>
-                  <Form.Label>För och efternamn</Form.Label>
-                  <Form.Control
-                    type='text'
-                    name='name'
-                    placeholder='Namn'
-                    ref={register({
-                      required: true,
-                    })}
-                  />
-                  {errors.name && (
-                    <Alert variant='danger' className='mt-2'>
-                      Du måste ha ett namn
-                    </Alert>
-                  )}
-                </Form.Group>
-                <Form.Group controlId='formEmail'>
-                  <Form.Label>Mailadress</Form.Label>
-                  <Form.Control
-                    type='email'
-                    name='email'
-                    placeholder='Mail'
-                    ref={register({ required: true })}
-                  />
-                  {errors.email && (
-                    <Alert variant='danger' className='mt-2'>
-                      Du måste ha en email
-                    </Alert>
-                  )}
-                </Form.Group>
+      <Row>
+        <Col sm={12} md={5} xl={5}>
+          <h1>{user && user.displayName}</h1>
+          {message.msg && (
+            <Alert variant={message.variant}>{message.msg}</Alert>
+          )}
+          {user && (
+            <Form onSubmit={handleSubmit(handleUpdate)}>
+              <Form.Group controlId='formName'>
+                <Form.Label>För och efternamn</Form.Label>
+                <Form.Control
+                  type='text'
+                  name='name'
+                  placeholder='Namn'
+                  ref={register({
+                    required: true,
+                  })}
+                />
+                {errors.name && (
+                  <Alert variant='danger' className='mt-2'>
+                    Du måste ha ett namn
+                  </Alert>
+                )}
+              </Form.Group>
+              <Form.Group controlId='formEmail'>
+                <Form.Label>Mailadress</Form.Label>
+                <Form.Control
+                  type='email'
+                  name='email'
+                  placeholder='Mail'
+                  ref={register({ required: true })}
+                />
+                {errors.email && (
+                  <Alert variant='danger' className='mt-2'>
+                    Du måste ha en email
+                  </Alert>
+                )}
+              </Form.Group>
 
-                <Form.Group controlId='formPassword'>
-                  <Form.Label>Lösenord</Form.Label>
-                  <Form.Control
-                    type='password'
-                    name='password'
-                    placeholder='Lösenord'
-                    ref={register()}
-                  />
-                  {errors.password && (
-                    <Alert variant='danger' className='mt-2'>
-                      {errors.password.message}
-                    </Alert>
-                  )}
-                </Form.Group>
+              <Form.Group controlId='formPassword'>
+                <Form.Label>Lösenord</Form.Label>
+                <Form.Control
+                  type='password'
+                  name='password'
+                  placeholder='Lösenord'
+                  ref={register()}
+                />
+                {errors.password && (
+                  <Alert variant='danger' className='mt-2'>
+                    {errors.password.message}
+                  </Alert>
+                )}
+              </Form.Group>
 
-                <Form.Group controlId='formPasswordRepeat'>
-                  <Form.Label>Bekräfta Lösenord</Form.Label>
-                  <Form.Control
-                    type='password'
-                    name='password_repeat'
-                    placeholder='Lösenord'
-                    ref={register({
-                      validate: value =>
-                        value === pw.current || 'Lösenorden måste vara lika',
-                    })}
-                  />
-                  {errors.password_repeat && (
-                    <Alert variant='danger' className='mt-2'>
-                      {errors.password_repeat.message}
-                    </Alert>
-                  )}
-                </Form.Group>
-                <Button variant='primary' type='submit'>
-                  Uppdatera Profile
-                </Button>
-              </Form>
-            )}
-          </Col>
-          <Col sm={12} md={7} xl={7}>
-            <h1>Beställningar</h1>
-          </Col>
-        </Row>
-      </>
+              <Form.Group controlId='formPasswordRepeat'>
+                <Form.Label>Bekräfta Lösenord</Form.Label>
+                <Form.Control
+                  type='password'
+                  name='password_repeat'
+                  placeholder='Lösenord'
+                  ref={register({
+                    validate: value =>
+                      value === pw.current || 'Lösenorden måste vara lika',
+                  })}
+                />
+                {errors.password_repeat && (
+                  <Alert variant='danger' className='mt-2'>
+                    {errors.password_repeat.message}
+                  </Alert>
+                )}
+              </Form.Group>
+              <Button variant='primary' type='submit'>
+                Uppdatera Profile
+              </Button>
+            </Form>
+          )}
+        </Col>
+        <Col sm={12} md={7} xl={7}>
+          <h1>Beställningar</h1>
+        </Col>
+      </Row>
     </Layout>
   );
 }
